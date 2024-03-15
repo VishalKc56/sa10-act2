@@ -2,11 +2,11 @@
 class GildedRose
   attr_reader :item
     
-  def initialize(name:, days_remaining:, quality:)
+  def self.new(name:, days_remaining:, quality:)
      @item = klass_for(name).new(name:, days_remaining:, quality:)
   end
 
-  def klass_for(name)
+  def self.klass_for(name)
     case name
     when 'Normal Item'
       Normal
@@ -18,20 +18,6 @@ class GildedRose
       Backstage
     end
   end
-
-  def tick
-    item.tick
-  end
-
-  def quality
-    item.quality
-  end
-
-  def days_remaining
-    item.days_remaining
-  end 
-
-
 
   
   class Normal
