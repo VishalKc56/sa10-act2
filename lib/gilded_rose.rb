@@ -7,9 +7,11 @@ class GildedRose
     @quality = quality
   end
 
+  
+
   def tick
     case name
-    when 'normal'
+    when 'Normal Item'
       return normal_tick
     when 'Aged Brie'
       return brie_tick
@@ -34,7 +36,7 @@ class GildedRose
     return if @quality >= 50
 
     @quality += 1
-    @quality += 1 if @days_remaining <= 0
+    @quality += 1 if @days_remaining <= 0 && @quality < 50
   end
 
   def sulfuras_tick
@@ -43,7 +45,7 @@ class GildedRose
   def backstage_tick
     @days_remaining -= 1
     return    if @quality >= 50
-    return @quality = 0 if @days_remaining <= 0
+    return @quality = 0 if @days_remaining < 0
 
     @quality += 1
     @quality += 1 if @days_remaining < 10
