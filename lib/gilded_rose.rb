@@ -3,12 +3,11 @@
 module GildedRose
 
   class Item
-    attr_reader :name, :days_remaining, :quality
+    attr_reader :quality, :days_remaining
     
-    def initialize(name:, days_remaining:, quality:)
-      @name = name
-      @days_remaining = days_remaining
-      @quality = quality
+    def initialize(quality, days_remaining)
+      
+      @quality, @days_remaining = quality, days_remaining
     end
 
     def tick
@@ -57,7 +56,7 @@ module GildedRose
       return if @quality == 0
 
       @quality -= 2
-      @quality -2 if @days_remaining <= 0
+      @quality -= 2 if @days_remaining <= 0
     end
   end
 
@@ -70,7 +69,7 @@ module GildedRose
   }
   
   def self.new(name:, days_remaining:, quality:)
-  (SPECIALIZED_CLASSES[name] || DEFAULT_CLASS).new(name:, days_remaining:, quality:)
+  (SPECIALIZED_CLASSES[name] || DEFAULT_CLASS).new(quality, days_remaining)
   end
        
 
